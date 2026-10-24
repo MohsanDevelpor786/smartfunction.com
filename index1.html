@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divide Two Numbers</title>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Divide Two Float Numbers</h2>
+
+        <form onsubmit="return calculate()">
+            <label>First Float Number:</label><br>
+            <input type="number" step="any" id="num1" required><br><br>
+
+            <label>Second Float Number:</label><br>
+            <input type="number" step="any" id="num2" required><br><br>
+
+            <button type="submit">Calculate</button>
+        </form>
+
+        <h3 id="division"></h3>
+        <h3 id="remainder"></h3>
+    </div>
+
+    <script>
+        function calculate() {
+            let a = parseFloat(document.getElementById("num1").value);
+            let b = parseFloat(document.getElementById("num2").value);
+
+            let division = a / b;
+
+            // Explicit casting (float → int)
+            let remainder = parseInt(a) % parseInt(b);
+
+            document.getElementById("division").innerHTML =
+                "Division Result = " + division.toFixed(2);
+
+            document.getElementById("remainder").innerHTML =
+                "Remainder = " + remainder;
+
+            return false; // stop page refresh
+        }
+    </script>
+
+</body>
+</html>

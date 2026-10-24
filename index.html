@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arithmatic Operator Perform</title>
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            height: auto;
+            transition: all 0.4s ease-in-out;
+            /* <-- transition property */
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+        }
+        .text-programing:hover{
+            color:white;
+            background-color: black;
+            border-radius: 20px;
+            padding: 20px;
+            margin-left: 100px;
+            margin-right: 100px;
+            cursor: pointer;
+        }
+        .row h4:hover{
+            color:rgb(0, 42, 255);
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+    <!-- Secion 1 -->
+    <div class="container mt-3">
+        <h2 class="text-center mb-4 fw-bold text-programing">Simple Function Programming</h2> 
+        <div class="row gy-4">
+            <!--  card 1 Mathematic Operation -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card bg-white p-3 rounded shadow border h-100">
+                    <h4 class="text-center mb-3 fw-bold">Arithmetic Operations</h4>
+                    <form id="operationForm">
+                        <div class="mb-2">
+                            <input type="number" id="num1" class="form-control" placeholder="Enter first number"
+                                required>
+                        </div>
+
+                        <div class="mb-2">
+                            <input type="number" id="num2" class="form-control" placeholder="Enter second number"
+                                required>
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="operation"><strong>Select Operation:</strong></label>
+                            <select id="operation" name="operation" class="form-select">
+                                <option value="" disabled selected>Select an operation</option>
+                                <option value="addition">Addition (+)</option>
+                                <option value="subtraction">Subtraction (-)</option>
+                                <option value="multiplication">Multiplication (×)</option>
+                                <option value="division">Division (÷)</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-dark w-100 btn-sm fw-semibold">Add Numbers</button>
+                        <p class="fw-bold p-2 mt-2 bg-light border rounded" id="operationResult">Result: </span></p>
+                    </form>
+                </div>
+
+                <script>
+                    // Mathematic Operation Function (jQuery)
+                    $(document).ready(function () {
+                        $("#operationForm").on("submit", function (e) {
+                            e.preventDefault();
+                            let num1 = parseFloat($("#num1").val());
+                            let num2 = parseFloat($("#num2").val());
+                            let operationTest = $("#operation").val();
+                            let result;
+
+                            switch (operationTest) {
+                                case "addition":
+                                    result = num1 + num2;
+                                    break;
+                                case "subtraction":
+                                    result = num1 - num2;
+                                    break;
+                                case "multiplication":
+                                    result = num1 * num2;
+                                    break;
+                                case "division":
+                                    if (num2 !== 0) {
+                                        result = num1 / num2;
+                                    } else {
+                                        result = "Error: Division by zero";
+                                    }
+                                    break;
+                                default:
+                                    result = "Please select a valid operation.";
+                            }
+
+                            $("#operationResult").text("Result: " + result).css("color", "green");
+                        });
+                    });
+                </script>
+            </div>
+
+            <!-- card 2 Largest Number -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card bg-white p-3 rounded shadow border h-100">
+                    <h4 class="fw-bold">Large Number (Array)</h4>
+                    <form id="arrayForm">
+                        <label>Enter Numbers Use Array:</label>
+                        <input type="text" id="numberArray" class="form-control mb-2"
+                            placeholder="Example: 10, 55, 99, 35,16">
+                        <button type="submit" class="btn btn-dark text-white w-100 btn-sm fw-semibold">Find
+                            Largest</button>
+                        <p class="fw-bold p-2 mt-2 bg-light border rounded" id="arrayResult">Largest is :</p>
+                    </form>
+                </div>
+                <!-- Find Large Number -->
+                <script>
+                    $(document).ready(function () {
+                        $("#arrayForm").on("submit", function (e) {
+                            e.preventDefault();
+                            let inputValue = $("#numberArray").val();
+                            // Convert text → array of numbers
+                            let numberArray = inputValue.split(",").map(function (item) {
+                                return parseFloat(item.trim());
+                            });
+                            // Find the largest number
+                            let largeNumber = Math.max(...numberArray);
+                            $("#arrayResult").text("Largest Number is: " + largeNumber).css("color", "green");
+                        });
+                    });
+                </script>
+            </div>
+
+            <!-- card 3 -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card bg-white p-3 rounded shadow border h-100">
+                    <h4 class="fw-bold">Small Number (Array)</h4>
+                    <form id="arrayform1">
+                        <label>Enter Numbers Use Array:</label>
+                        <input type="text" id="numberArray1" class="form-control mb-2"
+                            placeholder="Example: 10, 55, 99, 35,16">
+                        <button type="submit" class="btn btn-dark text-white w-100 btn-sm fw-semibold">Find
+                            Smallest</button>
+                        <p class="fw-bold p-2 mt-2 bg-light border rounded" id="arrayResult1">Smallest is :</p>
+                    </form>
+                </div>
+                <!-- Find Small Number -->
+                <script>
+                    $(document).ready(function () {
+                        $("#arrayform1").on("submit", function (e) {
+                            e.preventDefault();
+                            let inputValue = $("#numberArray1").val();
+                            // Convert text → array of numbers
+                            let numberArray = inputValue.split(",").map(function (item) {
+                                return parseFloat(item.trim());
+                            });
+                            // Find the smallest number
+                            let smallNumber = Math.min(...numberArray);
+                            $("#arrayResult1").text("smallest Number is :" + smallNumber).css("color", "green");
+                        });
+                    });
+                </script>
+            </div>
+
+            <!-- card 4 -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card bg-white p-3 rounded shadow border h-100">
+                    <h4 class="text-center mb-3 fw-bold">Search Table</h4>
+                    <form id="tableForm">
+                        <label>Enter any Number:</label>
+                        <input type="number" id="tableNumber" placeholder="Enter any number" class="form-control mb-2">
+                        <button type="submit" class="btn btn-dark btn-sm w-100 fw-semibold">Create Table</button>
+
+                        <p class="fw-bold p-2 mt-2 bg-light border rounded" id="tableResult">Result:</p>
+                    </form>
+                </div>
+                <script>
+                    // Multiplication Table Function (jQuery)
+                    $(document).ready(function () {
+                        $("#tableForm").on("submit", function (e) {
+                            e.preventDefault();
+                            let number = parseInt($("#tableNumber").val());
+                            let outputResult = "";
+                            for (let i = 1; i <= 10; i++) {
+                                outputResult += `${number} × ${i} = ${number * i}<br>`;
+                            }
+                            $("#tableResult").html(outputResult).css("color", "green");
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="container mt-4 mb-4">
+        <div class="row">
+
+            <!-- card 1 -->
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                <div class="card p-3 shadow-sm">
+                    <h4 class="text-center fw-bold">Addition</h4>
+                    <form id="addForm">
+                        <label>Enter First Number:</label>
+                        <input type="number" id="number1" class="form-control mb-2" placeholder="Enter 1st Number">
+                        <label>Enter Second Number:</label>
+                        <input type="number" id="number2" class="form-control mb-2" placeholder="Enter 2nd Number">
+                        <button type="submit" class="btn btn-danger btn-sm text-white w-100 fw-semibold">Add</button>
+                        <p class="fw-bold p-2 mt-2 bg-light border rounded" id="addition">Result Is:</p>
+                    </form>
+                </div>
+                <script>
+                    // Addition
+                    function addNumber(number1, number2) {
+                        return number1 + number2;
+                    }
+                    $(document).ready(function () {
+                        $("#addForm").on("submit", function (e) {
+                            e.preventDefault();
+                            let number1 = parseFloat($("#number1").val());
+                            let number2 = parseFloat($("#number2").val());
+                            let result = addNumber(number1, number2);
+                            $("#addition").text(result).css("color", "green");
+                        });
+                    });
+                </script>
+            </div>
+            <!-- card 2 -->
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                <div class="card p-3 shadow-sm">
+                    <h4 class="text-center fw-bold">Subtraction</h4>
+                    <form id="subForm">
+                        <label>Enter 1st Number:</label>
+                        <input type="number" id="a" class="form-control mb-2" placeholder="Enter 1st Number">
+                        <label>Enter 2nd Number:</label>
+                        <input type="number" id="b" class="form-control mb-2" placeholder="Enter 2nd Number">
+                        <button type="submit"
+                            class="btn btn-danger btn-sm text-white w-100 fw-semibold">Subtract</button>
+                        <p class="fw-bold p-2 mt-2 bg-light border rounded" id="Subtraction">Result Is:</span></p>
+                    </form>
+                </div>
+                <script>
+                    // Subtraction
+                    function subNumbers(a, b) {
+                        return a - b;
+                    }
+                    $(document).ready(function () {
+                        $("#subForm").on("submit", function (e) {
+                            e.preventDefault();
+                            let a = parseFloat($("#a").val());
+                            let b = parseFloat($("#b").val());
+                            let result = subNumbers(a, b);
+                            $("#Subtraction").text(result).css("color", "green");
+                        });
+                    });
+                </script>
+            </div>
+
+            <!-- card 3 -->
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                <div class="card p-3 shadow-sm">
+                    <h4 class="text-center fw-bold">Multiplication</h4>
+                    <form id="mulForm">
+                        <label>Enter First Value:</label>
+                        <input type="number" id="c" class="form-control mb-2" placeholder="Enter 1st value">
+                        <label>Enter Second Value:</label>
+                        <input type="number" id="d" class="form-control mb-2" placeholder="Enter 2nd value">
+                        <button type="submit"
+                            class="btn btn-danger btn-sm text-white w-100 fw-semibold">Multiply</button>
+                        <p class="fw-bold p-2 mt-2 bg-light border rounded" id="multiplication">Result Is:</p>
+                    </form>
+                </div>
+                <script>
+                    // Multiplication
+                    function multiNumber(c, d) {
+                        return c * d;
+                    }
+                    $(document).ready(function () {
+                        $("#mulForm").on("submit", function (e) {
+                            e.preventDefault();
+                            let c = parseFloat($("#c").val());
+                            let d = parseFloat($("#d").val());
+                            let result = multiNumber(c, d);
+                            $("#multiplication").text(result).css("color", "green");
+                        });
+                    });
+                </script>
+            </div>
+
+            <!-- Card 4  -->
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                <div class="card p-3 shadow-sm">
+                    <h4 class="text-center fw-bold">Division</h4>
+                    <form id="multiForm">
+                        <label>Enter First Number:</label>
+                        <input type="number" id="div1" class="form-control mb-2" placeholder="Enter First Number">
+                        <label>Enter Second Number:</label>
+                        <input type="number" id="div2" class="form-control mb-2" placeholder="Enter Second Number">
+                        <button type="submit"
+                            class="btn btn-danger btn-sm text-white w-100 fw-semibold">Division</button>
+                        <p class="fw-bold p-2 mt-2 bg-light border rounded" id="multiDivision">Result Is:</span></p>
+                    </form>
+                </div>
+
+                <script>
+
+                    $(document).ready(function () {
+                        $("#multiForm").on("submit", function (e) {
+                            e.preventDefault();
+                            let multi1 = parseFloat($("#div1").val());
+                            let multi2 = parseFloat($("#div2").val());
+                            let result = multi1 / multi2;
+                            $("#multiDivision").text(result).css("color", "green");
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <!--Section 3-->
+    <div class="container mt-4 mb-4">
+        <div class="row g-4">
+            <!-- Card 1 -->
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                <div class="card p-3 shadow h-100">
+                    <h4 class="text-center fw-bold mb-3">Full Name Show</h4>
+                    <form id="showForm">
+                        <label>Enter First Name:</label>
+                        <input type="text" id="fname" class="form-control mb-2" placeholder="Enter First Name">
+                        <label>Enter Last Name:</label>
+                        <input type="text" id="lname" class="form-control mb-2" placeholder="Enter Last Name">
+                        <button type="submit" class="btn btn-primary btn-sm text-white w-100 fw-semibold">Show
+                            Name</button>
+                        <p class="fw-bold p-2 mt-2 bg-light border rounded" id="showName">Full Name:</span></p>
+                    </form>
+                </div>
+
+                <script>
+                    // Full Name
+                    function fullName(fname, lname) {
+                        return fname + " " + lname;
+                    }
+                    $(document).ready(function () {
+                        $("#showForm").on("submit", function (e) {
+                            e.preventDefault();
+                            let fname = $("#fname").val();
+                            let lname = $("#lname").val();
+                            let result = fullName(fname, lname);
+                            $("#showName").text(result).css("color", "green");
+                        });
+                    });
+                </script>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                <div class="card p-3 shadow h-100">
+                    <form id="showReverseForm">
+                        <h4 class="text-center fw-bold mb-3">Full & Reverse Name</h4>
+
+                        <label>Enter First Name</label>
+                        <input type="text" id="firstN" placeholder="Enter First Name" class="form-control mb-2">
+
+                        <label>Enter Last Name</label>
+                        <input type="text" id="lastN" placeholder="Enter Last Name" class="form-control mb-2">
+
+                        <button type="submit" class="btn btn-primary btn-sm w-100 fw-semibold">Show Full & Reverse
+                            Name</button>
+
+                        <p class="fw-bold p-2 mt-2 bg-light border rounded">Full Name: <span id="fullName"
+                                class="text-primary fw-bold"></span></p>
+                        <p class="fw-bold p-2 mt-2 bg-light border rounded">Reverse Name: <span id="reverseName"
+                                class="text-danger fw-bold"></span></p>
+                    </form>
+                </div>
+                <!--  JS Script Section -->
+                <script>
+                    // Full & Reverse Name Function
+                    function fullNameShow(firstN, lastN) {
+                        return firstN + " " + lastN;
+                    }
+
+                    function reverseString(str) {
+                        return str.split("").reverse().join("");
+                    }
+
+                    $(document).ready(function () {
+                        $("#showReverseForm").on("submit", function (e) {
+                            e.preventDefault();
+                            let firstN = $("#firstN").val().trim();
+                            let lastN = $("#lastN").val().trim();
+                            let result = fullNameShow(firstN, lastN);
+                            let reversed = reverseString(result);
+                            $("#fullName").text(result);
+                            $("#reverseName").text(reversed).css("color", "green");
+                        });
+                    });
+                </script>
+
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                <div class="card p-3 shadow h-100">
+                    <form id="marksForm">
+                        <h4 class="text-center fw-bold mb-3">Check Grade</h4>
+
+                        <label>Enter Your Marks</label>
+                        <input type="number" id="marks" placeholder="Enter Marks (0 - 100)" class="form-control mb-2">
+
+                        <button type="submit" class="btn btn-primary btn-sm w-100 fw-semibold">Check Grade</button>
+
+                        <p class="fw-bold p-2 mt-2 bg-light border rounded" id="resultRecord">Result Is:</p>
+                    </form>
+                </div>
+
+                <script>
+                    // Check Grade
+                    $("#marksForm").on("submit", function (e) {
+                        e.preventDefault();
+                        let marks = parseInt($("#marks").val());
+                        let grade = "";
+
+                        if (marks > 75) grade = "A+ (Excellent)";
+                        else if (marks > 60 && marks <= 75) grade = "1st Division";
+                        else if (marks > 45 && marks <= 60) grade = "2nd Division";
+                        else if (marks >= 33 && marks <= 45) grade = "Pass";
+                        else grade = "Fail";
+
+                        $("#resultRecord").text("Your Grade: " + grade)
+                            .css("color", marks >= 33 ? "green" : "red");
+                    });
+                </script>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                <div class="card p-3 shadow h-100">
+                    <h4 class="text-center mb-3 fw-bold">Find Day by Number</h4>
+                    <form id="dayForm">
+                        <label for="dayNumber">Enter a Number (1 - 7):</label>
+                        <input type="number" id="dayNumber" class="form-control mb-3" placeholder="Enter 1 to 8 for Day"
+                            min="1" max="10">
+
+                        <button type="submit" class="btn btn-primary btn-sm w-100 fw-semibold">Check Day</button>
+
+                        <p class="fw-bold p-2 mt-2 bg-light border rounded" id="dayResult">Result Is:</p>
+                    </form>
+                </div>
+                <script>
+
+                    // Day Finder
+                    $("#dayForm").on("submit", function (e) {
+                        e.preventDefault();
+                        let day = parseInt($("#dayNumber").val());
+                        let dayName = "";
+                        switch (day) {
+                            case 1: dayName = "Monday"; break;
+                            case 2: dayName = "Tuesday"; break;
+                            case 3: dayName = "Wednesday"; break;
+                            case 4: dayName = "Thursday"; break;
+                            case 5: dayName = "Friday"; break;
+                            case 6: dayName = "Saturday"; break;
+                            case 7: dayName = "Sunday"; break;
+                            default: dayName = "Invalid day number!";
+                        }
+
+                        $("#dayResult").text(dayName)
+                            .css("color", (day >= 1 && day <= 7) ? "green" : "red");
+                    }); 
+                </script>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="container mt-4 mb-4">
+        <div class="row g-4">
+            <!-- card 1 -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card p-4 shadow h-100">
+                    <h4 class="text-center fw-bold">Even and Odd Number</h4>
+                    <form id="checkShowForm">
+                        <label for="">Enter Number</label>
+                        <input type="number" id="checkNumber" class="form-control mb-2" placeholder="Enter any number">
+                        <button type="submit" class="btn btn-success btn-sm w-100 btn-sm text-white fw-semibold">Check
+                            Even &
+                            Odd</button>
+                        <p class="fw-bold p-2 mt-2 bg-light border rounded" id="checkResult">Result Is:</p>
+                    </form>
+                </div>
+
+                <script>
+                    $(document).ready(function () {
+                        $("#checkShowForm").on("submit", function (e) {
+                            e.preventDefault();
+                            let checkNumber = parseInt($("#checkNumber").val());
+                            let result = (checkNumber % 2 === 0) ? "Even Number" : "Odd Number";
+                            $("#checkResult").text(result).css("color", "green");
+                        })
+                    });
+                </script>
+            </div>
+
+            <!-- card 2 -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card p-4 shadow h-100">
+                    <h4 class="text-center fw-bold">Table naumber Search</h4>
+                    <form id="checkTableForm">
+                        <label for="">Enter Nember for Tabel:</label>
+                        <input type="text" id="anyTableNumber" class="form-control mb-2" placeholder="Enter any number">
+                        <button type="submit" class="btn btn-success text-white btn-sm btn-sm fw-semibold">Any Table
+                            Number</button>
+                        <p class="fw-bold p-2 mt-2 bg-light border rounded" id="resultTable">Result Is:</p>
+                    </form>
+
+                    <script>
+                        $(document).ready(function () {
+                            $("#checkTableForm").on("submit", function (e) {
+                                e.preventDefault();
+                                let anyTableNumber = parseInt($("#anyTableNumber").val());
+                                let output = "";
+                                for (let i = 1; i <= 10; i++) {
+                                    output += `${anyTableNumber} × ${i} = ${anyTableNumber * i}<br>`;
+                                }
+                                $("#resultTable").html(output).css("color", "green");
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+            <!-- card 3 -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card p-3 shadow h-100">
+                    <h4 class="fw-bold">Find Largest Number</h4>
+                    <form id="largeNumberForm">
+                        <label for="">Enter First Number:</label>
+                        <input type="number" id="firstNumber" class="form-control mb-2"
+                            placeholder="Enter first number">
+                        <label for="">Enter Second Number:</label>
+                        <input type="number" id="secondNumber" class="form-control mb-2"
+                            placeholder="Enter second number">
+                        <button type="submit"
+                            class="btn btn-success btn-sm text-white w-100 btn-sm text-white fw-semibold">Find
+                            Largest
+                        </button>
+                        <p class="fw-bold p-2 mt-2 bg-light border rounded" id="largeResult">Largest Number Is:</p>
+                    </form>
+                </div>
+
+                <script>
+                    $(document).ready(function () {
+                        $("#largeNumberForm").on("submit", function (e) {
+                            e.preventDefault();
+                            let firstNumber = parseFloat($("#firstNumber").val());
+                            let secondNumber = parseFloat($("#secondNumber").val());
+                            let numberTest = firstNumber > secondNumber ? firstNumber : secondNumber;
+                            $("#largeResult").text("Large Number is:" + numberTest).css("color", "green");
+                        });
+                    });
+                </script>
+            </div>
+
+            <!-- card 4 -->
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card p-3 shadow h-100">
+                    <h4 class="fw-bold">Find Smallest Number</h4>
+                    <form id="smallNumberForm">
+                        <label for="">Enter First Number:</label>
+                        <input type="number" id="smallNumber1" class="form-control mb-2"
+                            placeholder="Enter first number">
+                        <label for="">Enter Second Number:</label>
+                        <input type="number" id="smallNumber2" class="form-control mb-2"
+                            placeholder="Enter second number">
+                        <button type="submit"
+                            class="btn btn-success btn-sm text-white w-100 btn-sm text-white fw-semibold">Find
+                            Smallest
+                        </button>
+                        <p class="fw-bold p-2 mt-2 bg-light border rounded" id="smallResult">Smallest Number Is:</p>
+                    </form>
+                </div>
+                <script>
+                    $(document).ready(function () {
+                        $("#smallNumberForm").on("submit", function (e) {
+                            e.preventDefault();
+                            let firstNumber = parseFloat($("#smallNumber1").val());
+                            let secondNumber = parseFloat($("#smallNumber2").val());
+                            let numberTest = firstNumber < secondNumber ? firstNumber : secondNumber;
+                            $("#smallResult").text("Small Number is:" + numberTest).css("color", "green");
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

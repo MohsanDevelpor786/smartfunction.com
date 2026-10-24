@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator</title>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f4f4f4;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Calculator Box */
+.calculator {
+    width: 800px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+/* Display */
+.display {
+    width: 97%;
+    height: 60px;
+    text-align: right;
+    font-size: 28px;
+    padding: 10px;
+    border: none;
+    background: #eee;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.display:hover{
+    color: white;
+    background-color: black;
+}
+
+/* Buttons Grid */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+/* Button Style */
+button {
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #ff0000;
+}
+
+button:hover {
+    background: #ccc;
+}
+
+.equal {
+    background: #007bff;
+    color: white;
+}
+
+/* Responsive */
+@media(max-width: 500px) {
+    .calculator {
+        width: 95%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+    <input type="text" class="display" disabled>
+
+    <div class="buttons">
+        <button class="clear">C</button>
+        <button class="del">⌫</button>
+        <button>%</button>
+        <button>/</button>
+
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>*</button>
+
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>-</button>
+
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>+</button>
+
+        <button>0</button>
+        <button>.</button>
+        <button class="equal">=</button>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+
+    let display = $('.display');
+
+    // Number & operator click
+    $('button').not('.equal, .clear, .del').click(function(){
+        display.val(display.val() + $(this).text());
+    });
+
+    // Clear
+    $('.clear').click(function(){
+        display.val('');
+    });
+
+    // Delete
+    $('.del').click(function(){
+        display.val(display.val().slice(0, -1));
+    });
+
+    // Equal
+    $('.equal').click(function(){
+        try {
+            display.val(eval(display.val()));
+        } catch {
+            display.val('Error');
+        }
+    });
+
+});
+</script>
+
+</body>
+</html>
